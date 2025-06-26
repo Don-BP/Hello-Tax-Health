@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <base target="_top">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson Architect - Brain Power Guide</title>
+    <link rel="stylesheet" href="style.css" media="screen">
+    <link rel="stylesheet" href="print.css" media="print">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body data-theme="light">
+    <header class="no-print">
+        <div class="header-content">
+            <a href="index.html" class="logo-link"><h1>Brain Power Guide</h1></a>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open Navigation Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <nav class="mobile-nav" id="mobileNav">
+            <a href="index.html">Welcome</a>
+            <a href="visa-info.html">Visa Info</a>
+            <a href="taxes.html">Taxes</a>
+            <a href="hello-work.html">Hello Work</a>
+            <a href="budgeting.html">Budgeting</a>
+            <a href="alt-handbook.html">ALT Handbook</a>
+            <a href="lesson-architect.html" class="active">Lesson Architect</a>
+            <a href="hsp-calculator.html">HSP Calculator</a>
+            <a href="emergency.html">Emergency</a>
+            <a href="glossary.html">Glossary</a>
+        </nav>
+    </header>
+
+    <div class="container lesson-architect-container">
+        <h1>Lesson Plan Architect</h1>
+        
+        <!-- Teacher Info -->
+        <div class="phase-section teacher-info">
+            <h2>Teacher Information</h2>
+            <div class="form-group teacher-role-group">
+                <label for="altName">ALT Name:</label>
+                <input type="text" id="altName" name="altName" class="teacher-name-input">
+                <div class="role-selector">
+                    <div><input type="radio" name="altRole" id="altT1" value="T1"><label for="altT1" class="radio-label">T1 (Lead)</label></div>
+                    <div><input type="radio" name="altRole" id="altT2" value="T2" checked><label for="altT2" class="radio-label">T2 (Assistant)</label></div>
+                </div>
+            </div>
+            <div class="form-group teacher-role-group">
+                <label for="jteName">JTE Name:</label>
+                <input type="text" id="jteName" name="jteName" class="teacher-name-input">
+                 <div class="role-selector">
+                    <div><input type="radio" name="jteRole" id="jteT1" value="T1" checked><label for="jteT1" class="radio-label">T1 (Lead)</label></div>
+                    <div><input type="radio" name="jteRole" id="jteT2" value="T2"><label for="jteT2" class="radio-label">T2 (Assistant)</label></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PREPARE -->
+        <div id="phase-prepare" class="phase-section">
+          <h2>PREPARE (Teacher Groundwork)</h2>
+          <div class="form-group">
+            <label for="planDate">Lesson Date:</label>
+            <input type="date" id="planDate" name="planDate">
+          </div>
+          <div class="form-group">
+            <label for="planSchool">School:</label>
+            <input type="text" id="planSchool" name="planSchool" placeholder="e.g., Sakura Elementary">
+          </div>
+          <div class="form-group grade-class-group">
+            <label for="planGrade">Grade:</label>
+            <select id="planGrade" name="planGrade"></select>
+            <label for="planClass" class="class-label">Class:</label>
+            <input type="text" id="planClass" name="planClass" placeholder="e.g., 1">
+          </div>
+          <div class="form-group">
+            <label for="planTextbookUnit">Textbook & Unit/Topic: <span class="tooltip-icon info" data-tooltip-target="tooltip-textbook">ⓘ</span></label>
+            <input type="text" id="planTextbookUnit" name="planTextbookUnit" placeholder="e.g., Sunshine JHS - Unit 5, Daily Routines">
+            <div class="tooltip-text" id="tooltip-textbook"><strong>Hint:</strong> Enter the textbook name and the specific unit or topic for this lesson. This helps focus your planning and link to curriculum goals.</div>
+          </div>
+           <div class="form-group">
+            <label for="materialsNeeded">Materials Needed: <span class="tooltip-icon info" data-tooltip-target="tooltip-materials">ⓘ</span></label>
+            <textarea id="materialsNeeded" name="materialsNeeded" rows="2" placeholder="List all physical and digital materials."></textarea>
+            <div class="tooltip-text" id="tooltip-materials"><strong>Hint:</strong> e.g., 10 animal flashcards, 'What time is it?' worksheet, YouTube video link.<br><strong>Suggestion:</strong> Check the Brain Bank for ready-made materials!<br><strong>Reminder:</strong> Ensure all materials are prepared, printed, and tested (if digital) well before the lesson.</div>
+          </div>
+          <div class="form-group">
+            <label for="lessonGoal">Lesson Goal (LG): <span class="tooltip-icon info" data-tooltip-target="tooltip-lg">ⓘ</span></label>
+            <textarea id="lessonGoal" name="lessonGoal" rows="2" placeholder="What specific, measurable skill should students DEMONSTRATE?"></textarea>
+            <div class="tooltip-text" id="tooltip-lg"><strong>Hint:</strong> What should students be able to DO by the lesson's end? Use an action verb (e.g., "ask," "answer," "identify," "describe").<br><strong>Example:</strong> "Students will be able to ask and answer 'What time do you...?' for three daily activities using present tense."<br><strong>Reminder:</strong> Focus on ONE primary, achievable goal for a single lesson. Make it SMART (Specific, Measurable, Achievable, Relevant, Time-bound).</div>
+          </div>
+          <div class="form-group">
+            <label for="targetLanguage">Target Language (TL): <span class="tooltip-icon info" data-tooltip-target="tooltip-tl">ⓘ</span></label>
+            <textarea id="targetLanguage" name="targetLanguage" rows="2" placeholder="Specific sentence structure(s) or question(s)."></textarea>
+            <div class="tooltip-text" id="tooltip-tl"><strong>Hint:</strong> The exact phrases, grammar points, or questions central to the lesson.<br><strong>Example:</strong> "What time do you [verb]?" / "I [verb] at [time]." / "He/She [verbs] at [time]."<br><strong>Suggestion:</strong> Is this TL appropriate for the selected Grade? Check MEXT guidelines or textbook aims. Consider student cognitive load.<br><strong>Reminder:</strong> Don't introduce too many complex structures at once. One or two key items are usually best for a single lesson.</div>
+          </div>
+          <div class="form-group">
+            <label for="lessonVocabulary">Lesson Vocabulary (LV): <span class="tooltip-icon info" data-tooltip-target="tooltip-lv">ⓘ</span></label>
+            <textarea id="lessonVocabulary" name="lessonVocabulary" rows="2" placeholder="Key NEW words needed."></textarea>
+            <div class="tooltip-text" id="tooltip-lv"><strong>Hint:</strong> List only essential NEW words students need for the TL and activities.<br><strong>Example:</strong> (For "What time do you...") get up, eat breakfast, go to school, 7:00, 7:15, half past seven.<br><strong>Suggestion:</strong> Limit new vocabulary items (e.g., 5-7 for younger ES, 7-10 for JHS per lesson). Can you link any LV to visuals from the Brain Bank?<br><strong>Reminder:</strong> How will you pre-teach, present, and check understanding of this LV? (e.g., flashcards, gestures, context).</div>
+          </div>
+        </div>
+
+        <!-- Lesson Flow (3 Ps) -->
+        <div id="phase-lesson-flow" class="phase-section">
+          <h2>Lesson Flow (Structuring with the 3 Ps)</h2>
+          <p class="section-subtitle">Define activities, estimated timing, and roles for each stage. Discuss these with your JTE during <i>uchiawase</i>!</p>
+          <div class="lesson-stage">
+            <h3>A. Warm-up / Review (<input type="number" class="time-input" min="0" value="5" data-stage="warmup"> mins)</h3>
+            <label for="warmupDescALT">ALT Activity/Role: <span class="tooltip-icon alt-role" data-tooltip-target="tooltip-warmup-alt">ⓘ</span></label>
+            <textarea class="activity-description" id="warmupDescALT" placeholder="ALT's role & activity description for Warm-up"></textarea>
+            <div class="tooltip-text" id="tooltip-warmup-alt"><strong>ALT Role:</strong> Lead a short, engaging activity (3-5 mins) to energize students, review previous material, or lightly introduce the lesson's theme. Examples: quick song, chant ("Hello Song," "Days of the Week"), simple game (Keyword, Gesture Game), or asking simple questions ("How are you?" "What's the weather?").<br><strong>Reminder:</strong> Keep it brief, interactive, and fun! Ensure instructions are clear and simple.</div>
+            <label for="warmupDescJTE">JTE Activity/Role: <span class="tooltip-icon jte-role" data-tooltip-target="tooltip-warmup-jte">ⓘ</span></label>
+            <textarea class="activity-description" id="warmupDescJTE" placeholder="JTE's role during Warm-up"></textarea>
+            <div class="tooltip-text" id="tooltip-warmup-jte"><strong>JTE Role:</strong> Participate enthusiastically in the ALT's warm-up. Model responses/actions for students. Assist with materials if needed (e.g., pointing to calendar). Help manage student attention and encourage participation. Example: If ALT asks "How are you?", JTE can model "I'm happy!"</div>
+          </div>
+          <div class="lesson-stage">
+            <h3>B. PRESENT (Introducing New Language) (<input type="number" class="time-input" min="0" value="10" data-stage="present"> mins)</h3>
+            <label for="presentDescALT">ALT Activity/Role: <span class="tooltip-icon alt-role" data-tooltip-target="tooltip-present-alt">ⓘ</span></label>
+            <textarea class="activity-description" id="presentDescALT" placeholder="ALT: How will you introduce the TL and LV clearly?"></textarea>
+            <div class="tooltip-text" id="tooltip-present-alt"><strong>ALT Role:</strong> Clearly and engagingly introduce the Target Language (TL) and Lesson Vocabulary (LV). <br><strong>Key Strategies:</strong> Use vivid DEMONSTRATION (don't just explain!). Model pronunciation slowly and clearly multiple times. Use visuals (flashcards, realia, whiteboard drawings). Employ gestures (TPR). Act out short dialogues with the JTE showcasing the TL in context. (e.g., ALT: "What time do you get up?" JTE: "I get up at 6:30.").<br><strong>Classroom English:</strong> "Look!", "Listen!", "Repeat after me."<br><strong>Reminder:</strong> Assume students understand NO English explanation without strong visual/contextual support. Repetition is vital.</div>
+            <label for="presentDescJTE">JTE Activity/Role: <span class="tooltip-icon jte-role" data-tooltip-target="tooltip-present-jte">ⓘ</span></label>
+            <textarea class="activity-description" id="presentDescJTE" placeholder="JTE: e.g., Co-model with ALT, provide brief Japanese explanations/checks."></textarea>
+            <div class="tooltip-text" id="tooltip-present-jte"><strong>JTE Role:</strong> Actively co-model dialogues/scenarios with the ALT. Help display visuals. Reinforce ALT's modeling by repeating key phrases or asking comprehension-check questions in simple English or Japanese. Provide brief, targeted Japanese explanations of grammar points or nuanced vocabulary AFTER the ALT's English presentation, if necessary for clarity. Manage student attention.</div>
+          </div>
+          <div class="lesson-stage">
+            <h3>C. PRACTICE (Controlled Usage) (<input type="number" class="time-input" min="0" value="15" data-stage="practice"> mins)</h3>
+            <label for="practiceDescALT">ALT Activity/Role: <span class="tooltip-icon alt-role" data-tooltip-target="tooltip-practice-alt">ⓘ</span></label>
+            <textarea class="activity-description" id="practiceDescALT" placeholder="ALT: Activities for controlled, supported use of new language."></textarea>
+            <div class="tooltip-text" id="tooltip-practice-alt"><strong>ALT Role:</strong> Lead structured activities where students use the TL/LV with high support and repetition. Focus on accuracy and building confidence. Examples: Chorus drills, substitution drills, simple sentence-making with flashcards, matching games (Karuta). <br><strong>Key:</strong> ALWAYS demonstrate the activity clearly with the JTE first. Break down instructions step-by-step.</div>
+            <label for="practiceDescJTE">JTE Activity/Role: <span class="tooltip-icon jte-role" data-tooltip-target="tooltip-practice-jte">ⓘ</span></label>
+            <textarea class="activity-description" id="practiceDescJTE" placeholder="JTE: e.g., Co-demonstrate activity, monitor student practice, assist pairs/groups."></textarea>
+            <div class="tooltip-text" id="tooltip-practice-jte"><strong>JTE Role:</strong> Co-demonstrate the practice activity thoroughly with the ALT. Circulate during practice, monitor student understanding, and provide individual assistance. Help clarify instructions in Japanese if groups are struggling.</div>
+          </div>
+          <div class="lesson-stage">
+            <h3>D. PRODUCE (Freer Usage / Communication) (<input type="number" class="time-input" min="0" value="15" data-stage="produce"> mins)</h3>
+            <label for="produceDescALT">ALT Activity/Role: <span class="tooltip-icon alt-role" data-tooltip-target="tooltip-produce-alt">ⓘ</span></label>
+            <textarea class="activity-description" id="produceDescALT" placeholder="ALT: Activities for freer communication using TL."></textarea>
+            <div class="tooltip-text" id="tooltip-produce-alt"><strong>ALT Role:</strong> Facilitate activities where students use the TL more freely to exchange real information. Focus shifts towards fluency. Examples: Information gap activities, surveys ("Find someone who..."), simple student-led role-plays. <br><strong>Key:</strong> Ensure the task is achievable. Provide clear models and necessary scaffolding (e.g., sentence starters on the board).</div>
+            <label for="produceDescJTE">JTE Activity/Role: <span class="tooltip-icon jte-role" data-tooltip-target="tooltip-produce-jte">ⓘ</span></label>
+            <textarea class="activity-description" id="produceDescJTE" placeholder="JTE: e.g., Monitor student interactions, provide support for struggling students."></textarea>
+            <div class="tooltip-text" id="tooltip-produce-jte"><strong>JTE Role:</strong> Circulate and monitor student interactions. Provide support to students who are struggling to express themselves. Help pair/group students effectively. Encourage use of the target language.</div>
+          </div>
+          <div class="lesson-stage">
+            <h3>E. Wrap-up / Closing (<input type="number" class="time-input" min="0" value="5" data-stage="wrapup"> mins)</h3>
+            <label for="wrapupDescALT">ALT Activity/Role: <span class="tooltip-icon alt-role" data-tooltip-target="tooltip-wrapup-alt">ⓘ</span></label>
+            <textarea class="activity-description" id="wrapupDescALT" placeholder="ALT: How will you conclude the lesson?"></textarea>
+            <div class="tooltip-text" id="tooltip-wrapup-alt"><strong>ALT Role:</strong> Briefly review the main learning point/TL from the lesson. Praise students' effort ("Good job today, everyone!"). Give a positive closing ("See you next time!").</div>
+            <label for="wrapupDescJTE">JTE Activity/Role: <span class="tooltip-icon jte-role" data-tooltip-target="tooltip-wrapup-jte">ⓘ</span></label>
+            <textarea class="activity-description" id="wrapupDescJTE" placeholder="JTE: e.g., Reinforce key takeaways, make announcements for next class."></textarea>
+            <div class="tooltip-text" id="tooltip-wrapup-jte"><strong>JTE Role:</strong> Reinforce the ALT's summary. Offer final words of praise. Make necessary announcements for homework or the next lesson.</div>
+          </div>
+           <hr class="section-divider">
+          <div id="time-allocation">
+            <strong>Total Estimated Time: <span id="total-time">0</span> mins</strong>
+            <div id="time-warning" style="display: none;"></div>
+          </div>
+        </div>
+
+        <!-- Review & Finalize -->
+        <div id="phase-review" class="phase-section">
+            <h2>Review & Finalize</h2>
+            <div class="page-checklist architect-checklist">
+                <h4>Lesson Planning Checklist:</h4>
+                <table>
+                    <tr>
+                        <td>Goal Clarity (SMART)?</td>
+                        <td class="checkbox-cell"><input type="checkbox" id="chkGoalClarity"></td>
+                        <td class="tooltip-cell"><span class="tooltip-icon checklist-tip" data-tooltip-target="tooltip-chk-goal">ⓘ</span></td>
+                    </tr>
+                    <tr class="tooltip-row"><td colspan="3"><div class="tooltip-text" id="tooltip-chk-goal"><strong>Check:</strong> Is the Lesson Goal specific, measurable, achievable, relevant, and time-bound? Can students *demonstrate* it?</div></td></tr>
+                    
+                    <tr>
+                        <td>Target Language Focus (Limited)?</td>
+                        <td class="checkbox-cell"><input type="checkbox" id="chkTLFocus"></td>
+                        <td class="tooltip-cell"><span class="tooltip-icon checklist-tip" data-tooltip-target="tooltip-chk-tl">ⓘ</span></td>
+                    </tr>
+                    <tr class="tooltip-row"><td colspan="3"><div class="tooltip-text" id="tooltip-chk-tl"><strong>Check:</strong> Are you trying to teach too much new grammar/phrases? One or two distinct TL items are usually best for one lesson.</div></td></tr>
+                    
+                    <tr>
+                        <td>Vocabulary Support (Effective Intro)?</td>
+                        <td class="checkbox-cell"><input type="checkbox" id="chkLVSupport"></td>
+                        <td class="tooltip-cell"><span class="tooltip-icon checklist-tip" data-tooltip-target="tooltip-chk-lv">ⓘ</span></td>
+                    </tr>
+                    <tr class="tooltip-row"><td colspan="3"><div class="tooltip-text" id="tooltip-chk-lv"><strong>Check:</strong> Is necessary NEW vocabulary clearly identified? How will it be introduced and reinforced (visuals, gestures, context)?</div></td></tr>
+
+                    <tr>
+                        <td>Logical Flow (4 Ps)?</td>
+                        <td class="checkbox-cell"><input type="checkbox" id="chkLogicalFlow"></td>
+                        <td class="tooltip-cell"><span class="tooltip-icon checklist-tip" data-tooltip-target="tooltip-chk-flow">ⓘ</span></td>
+                    </tr>
+                    <tr class="tooltip-row"><td colspan="3"><div class="tooltip-text" id="tooltip-chk-flow"><strong>Check:</strong> Does the lesson progress logically: Warm-up -> Present -> Practice -> Produce -> Wrap-up? Does each stage build upon the previous one?</div></td></tr>
+                    
+                    <tr>
+                        <td>Activity Relevance (Supports LG/TL)?</td>
+                        <td class="checkbox-cell"><input type="checkbox" id="chkActivityRelevance"></td>
+                        <td class="tooltip-cell"><span class="tooltip-icon checklist-tip" data-tooltip-target="tooltip-chk-relevance">ⓘ</span></td>
+                    </tr>
+                    <tr class="tooltip-row"><td colspan="3"><div class="tooltip-text" id="tooltip-chk-relevance"><strong>Check:</strong> Do chosen activities directly help students practice and use the TL to achieve the Lesson Goal? Avoid "fun for fun's sake" if it doesn't support learning.</div></td></tr>
+
+                    <tr>
+                        <td>JTE/HRT Role Defined & Agreed?</td>
+                        <td class="checkbox-cell"><input type="checkbox" id="chkJTERoleDefined"></td>
+                        <td class="tooltip-cell"><span class="tooltip-icon checklist-tip" data-tooltip-target="tooltip-chk-jte-role">ⓘ</span></td>
+                    </tr>
+                    <tr class="tooltip-row"><td colspan="3"><div class="tooltip-text" id="tooltip-chk-jte-role"><strong>Check:</strong> Does the plan clearly outline specific, actionable roles for both ALT and JTE during each stage? Has this been discussed and agreed upon in <i>uchiawase</i>?</div></td></tr>
+                    
+                    <tr>
+                        <td>Materials Ready & Checked?</td>
+                        <td class="checkbox-cell"><input type="checkbox" id="chkMaterialsReady"></td>
+                        <td class="tooltip-cell"><span class="tooltip-icon checklist-tip" data-tooltip-target="tooltip-chk-materials">ⓘ</span></td>
+                    </tr>
+                    <tr class="tooltip-row"><td colspan="3"><div class="tooltip-text" id="tooltip-chk-materials"><strong>Check:</strong> Are ALL necessary materials (flashcards, worksheets, digital files, audio, realia, etc.) prepared, printed, tested, and organized?</div></td></tr>
+                    
+                    <tr>
+                        <td>Timing Realistic?</td>
+                        <td class="checkbox-cell"><input type="checkbox" id="chkTimingRealistic"></td>
+                        <td class="tooltip-cell"><span class="tooltip-icon checklist-tip" data-tooltip-target="tooltip-chk-timing">ⓘ</span></td>
+                    </tr>
+                    <tr class="tooltip-row"><td colspan="3"><div class="tooltip-text" id="tooltip-chk-timing"><strong>Check:</strong> Are time estimates for each stage reasonable for the actual class length (usually 45-50 min)? Factor in transitions. It's common to overestimate what can be done.</div></td></tr>
+                </table>
+            </div>
+            <div class="reminder final-reminder">
+                <p><strong>Uchiawase Reminder:</strong> Have you scheduled an <em>uchiawase</em> (planning meeting) with your JTE/HRT to discuss this lesson plan and your respective roles? This is CRUCIAL for successful team teaching!</p>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button id="generatePlanButton" type="button">Generate Plan Summary (Text)</button>
+            <button id="exportPdfButton" type="button">Export Plan as PDF</button>
+        </div>
+        <div id="loadingMessage" style="display:none;">Generating PDF...</div>
+
+        <div id="plan-summary-section" style="display:none;" class="phase-section">
+            <h2>Generated Lesson Plan Summary</h2>
+            <textarea id="planSummaryOutput" rows="20" readonly></textarea>
+        </div>
+    </div>
+    
+    <footer class="no-print">
+        <p><strong>Disclaimer:</strong> This guide is for informational purposes only. Rules and procedures are subject to change. Always confirm details directly with the relevant official body.</p>
+        <p>© Brain Power Co., Ltd. | Your Partner in Japan</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+/* print.css */
+
+@media print {
+    body {
+        font-family: 'Times New Roman', Times, serif;
+        color: #000;
+        background-color: #fff;
+    }
+
+    /* Hide non-essential elements */
+    .no-print, .sticky-nav, header, footer, .modal, .info-trigger, .update-info-box .cta-button {
+        display: none !important;
+    }
+
+    /* Reset main layout for printing */
+    main {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    section.step {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        border-left-width: 5px;
+        padding: 1.5rem;
+        page-break-inside: avoid; /* Try to keep sections from splitting across pages */
+        margin-bottom: 1rem;
+    }
+
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+
+    /* Show the URL for links */
+    a[href^="http"]:after {
+        content: " (" attr(href) ")";
+        font-size: 0.8rem;
+    }
+
+    .styled-table, .styled-table th, .styled-table td {
+        border: 1px solid #666;
+    }
+    
+    .checklist label {
+        color: #000;
+    }
+
+    .checklist input[type="checkbox"] {
+        display: inline-block; /* Make sure checkbox appears */
+        border: 1px solid #000;
+    }
+}
