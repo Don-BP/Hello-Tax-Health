@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <base target="_top">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSP PR Calculator - Brain Power Guide</title>
+    <!-- Link to the main stylesheet -->
+    <link rel="stylesheet" href="style.css" media="screen">
+    <!-- Link to Google Font as in your original file -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="no-print">
+        <div class="header-content">
+            <a href="index.html" class="logo-link"><h1>Brain Power Guide</h1></a>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open Navigation Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <nav class="mobile-nav" id="mobileNav">
+            <a href="visa-info.html">Visa Info</a>
+            <a href="taxes.html">Taxes</a>
+            <a href="hello-work.html">Hello Work</a>
+            <a href="budgeting.html">Budgeting</a>
+            <a href="alt-handbook.html">ALT Handbook</a>
+            <a href="lesson-architect.html">Lesson Architect</a>
+            <a href="PR-calculator.html" class="active">PR Calculator</a>
+            <a href="emergency.html">Emergency</a>
+            <a href="glossary.html">Glossary</a>
+        </nav>
+    </header>
+
+    <div class="container calculator-container">
+        <h1>Brain Power PR Calculator</h1>
+        <p>
+          Estimate your eligibility for accelerated Permanent Residency (PR) in Japan using this calculator.
+          It's based on the official <strong>Highly Skilled Professional (HSP) point system</strong>, which is one way to potentially shorten the required residency time.
+          While this system applies to ALTs, reaching the 70 or 80 point thresholds can be challenging, often due to salary levels.
+          Use this tool to understand your current standing and identify potential areas for improvement.
+        </p>
+
+        <form id="hspForm">
+          <!-- Academic Background -->
+          <div class="category">
+            <h2>1. Academic Background (学歴)</h2>
+            <div class="criterion">
+              <input type="radio" id="degree_none" name="academic_background" value="0" data-points="0" checked>
+              <label for="degree_none">None of the below / Other</label>
+            </div>
+            <div class="criterion">
+              <input type="radio" id="degree_phd" name="academic_background" value="30" data-points="30">
+              <label for="degree_phd">Doctorate Degree (PhD)</label>
+              <span class="points">(30 pts)</span>
+              <button type="button" class="help-btn" aria-label="Help on Doctorate Degree">?</button>
+              <span class="help-bubble">Points awarded for holding a PhD degree from a recognized university.</span>
+            </div>
+            <div class="criterion">
+              <input type="radio" id="degree_master" name="academic_background" value="20" data-points="20">
+              <label for="degree_master">Master's Degree / Professional Degree</label>
+              <span class="points">(20 pts)</span>
+              <button type="button" class="help-btn" aria-label="Help on Master's Degree">?</button>
+              <span class="help-bubble">Points awarded for holding a Master's degree or a recognized professional degree (e.g., MBA, JD).</span>
+            </div>
+            <div class="criterion">
+              <input type="radio" id="degree_bachelor" name="academic_background" value="10" data-points="10">
+              <label for="degree_bachelor">Bachelor's Degree (or equivalent)</label>
+              <span class="points">(10 pts)</span>
+              <button type="button" class="help-btn" aria-label="Help on Bachelor's Degree">?</button>
+              <span class="help-bubble">Points awarded for holding a Bachelor's degree or equivalent higher education recognized by Japan.</span>
+            </div>
+             <div class="criterion">
+              <input type="checkbox" id="bonus_dual_degree" name="bonus_dual_degree" value="5" data-points="5">
+              <label for="bonus_dual_degree">Holds *two* or more Master's or Doctorate degrees</label>
+              <span class="points">(+5 pts)</span>
+              <button type="button" class="help-btn" aria-label="Help on Dual Degrees">?</button>
+              <span class="help-bubble">Additional bonus points if you possess multiple Master's degrees or PhDs in different fields.</span>
+            </div>
+          </div>
+
+          <!-- Professional Career -->
+          <div class="category">
+            <h2>2. Professional Career (職歴)</h2>
+            <p>Points based on relevant work experience (including ALT experience).</p>
+            <div class="criterion">
+              <input type="radio" id="exp_none" name="professional_career" value="0" data-points="0" checked>
+              <label for="exp_none">Less than 3 years</label>
+            </div>
+            <div class="criterion">
+              <input type="radio" id="exp_3yr" name="professional_career" value="5" data-points="5">
+              <label for="exp_3yr">3 years or more (less than 5)</label>
+              <span class="points">(5 pts)</span>
+            </div>
+            <div class="criterion">
+              <input type="radio" id="exp_5yr" name="professional_career" value="10" data-points="10">
+              <label for="exp_5yr">5 years or more (less than 7)</label>
+              <span class="points">(10 pts)</span>
+            </div>
+            <div class="criterion">
+              <input type="radio" id="exp_7yr" name="professional_career" value="15" data-points="15">
+              <label for="exp_7yr">7 years or more (less than 10)</label>
+              <span class="points">(15 pts)</span>
+            </div>
+            <div class="criterion">
+              <input type="radio" id="exp_10yr" name="professional_career" value="20" data-points="20">
+              <label for="exp_10yr">10 years or more</label>
+              <span class="points">(20 pts)</span>
+            </div>
+          </div>
+
+          <!-- Annual Salary -->
+          <div class="category">
+             <h2>3. Annual Salary (年収)</h2>
+             <p>
+                Based on expected annual salary from the *contracting organization in Japan*. Must be ¥3 million or more.
+                <strong style="color: #dc3545;">Note for ALTs:</strong> This is often the most challenging category. Many standard ALT salaries fall into the lower point brackets.
+            </p>
+            <div class="criterion">
+              <label for="annual_salary">Select your annual salary range:</label>
+              <select id="annual_salary" name="annual_salary">
+                <option value="0" data-points="0">Less than ¥4 million</option>
+                <option value="10" data-points="10">¥4 million to less than ¥5 million</option>
+                <option value="15" data-points="15">¥5 million to less than ¥6 million</option>
+                <option value="20" data-points="20">¥6 million to less than ¥7 million</option>
+                <option value="25" data-points="25">¥7 million to less than ¥8 million</option>
+                <option value="30" data-points="30">¥8 million to less than ¥9 million</option>
+                <option value="35" data-points="35">¥9 million to less than ¥10 million</option>
+                <option value="40" data-points="40">¥10 million or more</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Bonus Points -->
+          <div class="category">
+            <h2>4. Bonus Points (ボーナス)</h2>
+            <p>Select any applicable bonuses. Some are more relevant to ALTs than others.</p>
+            <div class="criterion">
+              <input type="checkbox" id="bonus_jlpt_n1" name="bonus_jlpt_n1" value="15" data-points="15">
+              <label for="bonus_jlpt_n1">Passed Japanese Language Proficiency Test (JLPT) N1</label>
+              <span class="points">(+15 pts)</span>
+              <button type="button" class="help-btn" aria-label="Help on JLPT N1">?</button>
+              <span class="help-bubble">Or achieved 480+ points on the Business Japanese Proficiency Test (BJT). A very valuable bonus for ALTs.</span>
+            </div>
+            <div class="criterion">
+              <input type="checkbox" id="bonus_jp_uni" name="bonus_jp_uni" value="10" data-points="10">
+              <label for="bonus_jp_uni">Graduated from a Japanese University (Bachelor's or higher)</label>
+              <span class="points">(+10 pts)</span>
+            </div>
+             <div class="criterion">
+              <input type="checkbox" id="bonus_top_uni" name="bonus_top_uni" value="10" data-points="10">
+              <label for="bonus_top_uni">Graduated from a Top-Ranked University (Check official ISA lists)</label>
+              <span class="points">(+10 pts)</span>
+              <button type="button" class="help-btn" aria-label="Help on Top University Graduation">?</button>
+              <span class="help-bubble">Applies to graduates of universities on specific global rankings (QS, THE, ARWU) or Japan's 'Top Global University Project'. Check the Immigration Services Agency website for the current official lists.</span>
+            </div>
+             <div class="criterion">
+              <input type="checkbox" id="bonus_research" name="bonus_research" value="15" data-points="15">
+              <label for="bonus_research">Significant Research Achievements (e.g., Patents, Publications)</label>
+              <span class="points">(Up to +15 pts)</span>
+              <button type="button" class="help-btn" aria-label="Help on Research Achievements">?</button>
+              <span class="help-bubble">Generally *not applicable* to standard ALT work duties. Requires detailed proof evaluated by immigration.</span>
+            </div>
+            <div class="criterion">
+              <input type="checkbox" id="bonus_jp_qual" name="bonus_jp_qual" value="10" data-points="10">
+              <label for="bonus_jp_qual">Holds recognized Japanese National Qualification(s) (Relevant to work)</label>
+              <span class="points">(+5 or +10 pts)</span>
+              <button type="button" class="help-btn" aria-label="Help on Japanese Qualifications">?</button>
+              <span class="help-bubble">Generally *not applicable* to standard ALT roles. Refers to high-level licenses listed by the ISA.</span>
+            </div>
+          </div>
+        </form>
+
+        <div class="score-display">
+          <h2>Your Estimated HSP Points Score</h2>
+          <div id="totalScore">0</div>
+          <div id="eligibilityMessage">Calculating...</div>
+        </div>
+
+        <div class="alt-guidance">
+             <h3>Guidance for ALTs on Reaching HSP Point Thresholds</h3>
+             <ul>
+                <li><strong>Why Your Score Might Be Below 70:</strong> The most common reason for ALTs is the <strong>Annual Salary</strong> category. Many bonus points (Research, Management) are also not applicable.</li>
+                <li><strong>How ALTs CAN Gain Points:</strong> Focus on what you can control. <strong>JLPT N1</strong> (+15 pts) is often the most impactful goal. Long-term <strong>Professional Experience</strong> (+20 pts for 10+ years) and a <strong>Master's/PhD</strong> are also key. A higher salary is the most direct path.</li>
+                <li><strong>Key Takeaway:</strong> Reaching 70/80 points often requires a combination of factors, such as a Master's degree, 7+ years of experience, a salary over ¥6M, and JLPT N1.</li>
+                <li><strong>Alternative Path:</strong> Remember, the standard path to PR (typically after 10 years of continuous residency) is still available even if you do not meet HSP criteria.</li>
+            </ul>
+        </div>
+
+        <div class="disclaimer">
+           <strong>Disclaimer:</strong> This is an <strong>unofficial</strong> tool for estimation purposes only. Point values, criteria, and official lists can change. Eligibility for the HSP visa or accelerated Permanent Residency depends on a full assessment by the Japanese Immigration Services Agency (ISA) based on official documentation. Always consult the official ISA website and consider professional advice for actual applications.
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
