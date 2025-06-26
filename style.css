@@ -73,11 +73,11 @@ header h1 { margin: 0; font-size: 1.5rem; }
 .mobile-nav {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* MODIFIED: Aligns items to the top */
     background: var(--primary-color);
     height: 100vh;
     text-align: left;
-    padding: 2rem;
+    padding: 5rem 2rem 2rem 2rem; /* MODIFIED: Added top padding, reduced others slightly */
     position: fixed;
     top: 0;
     right: -100%;
@@ -86,11 +86,12 @@ header h1 { margin: 0; font-size: 1.5rem; }
     transition: right 0.3s ease-in-out;
     z-index: 1000;
     box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    overflow-y: auto;
 }
 .mobile-nav.open { right: 0; }
 .mobile-nav a {
-    font-size: 1.5rem;
-    padding: 1rem 0;
+    font-size: 1.3rem;
+    padding: 0.6rem 0; /* MODIFIED: Reduced padding to tighten the list */
     font-weight: bold;
     color: white;
     text-decoration: none;
