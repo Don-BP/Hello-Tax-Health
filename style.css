@@ -11,7 +11,10 @@
     --border-color: #dadce0;
 }
 
-html { scroll-behavior: smooth; }
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden; /* Prevent horizontal scroll on the whole page */
+}
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     line-height: 1.6;
@@ -22,6 +25,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scroll on the whole page */
 }
 
 /* --- Global Header & Hamburger Navigation --- */
@@ -80,15 +84,18 @@ header h1 { margin: 0; font-size: 1.5rem; }
     padding: 5rem 2rem 2rem 2rem;
     position: fixed;
     top: 0;
-    right: -100%;
-    width: 100%;
-    max-width: 300px;
-    transition: right 0.3s ease-in-out;
+    right: 0;
+    width: 300px;
+    max-width: 80vw;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(100%);
     z-index: 1000;
     box-shadow: -5px 0 15px rgba(0,0,0,0.2);
     overflow-y: auto;
 }
-.mobile-nav.open { right: 0; }
+.mobile-nav.open {
+    transform: translateX(0);
+}
 .mobile-nav a {
     font-size: 1.3rem;
     padding: 0.6rem 0;
@@ -113,13 +120,13 @@ footer {
 
 /* --- Generic Page Content Styles --- */
 .content-container { max-width: 800px; margin: 2rem auto; padding: 0 1rem; flex-grow: 1; }
-.step { background-color: white; border-radius: 8px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-left: 5px solid var(--primary-color); }
+.step { background-color: white; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-left: 5px solid var(--primary-color); }
 .step h2 { font-size: 2rem; color: var(--primary-color); margin-top: 0; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
 .step h3 { font-size: 1.5rem; color: #444; margin-top: 2rem; }
 .company-info { text-align: center; }
 .doc-item { border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 1rem; }
 .doc-item:first-child { border-top: none; }
-.styled-table { width:100%; border-collapse:collapse; margin:2rem 0; font-size:.95rem; }
+.styled-table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem; }
 .styled-table th, .styled-table td { border:1px solid #ddd; padding:12px; text-align:left; }
 .styled-table th { background-color:var(--secondary-color); font-weight:bold; }
 .page-checklist { background-color:#f8f9fa; border:1px solid #dee2e6; padding:1.5rem; border-radius:8px; margin:2rem 0; }
@@ -129,15 +136,9 @@ footer {
 .page-checklist td.checkbox-cell { width: 40px; text-align: center; }
 .page-checklist input[type="checkbox"] { transform: scale(1.2); }
 
-/* FIX: Responsive Table Wrapper */
+/* Remove previous wrapper style as it was ineffective for the goal */
 .table-responsive-wrapper {
-    overflow-x: auto;
-    width: 100%;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-}
-/* FIX: Give tables inside the wrapper a min-width to force scrolling */
-.table-responsive-wrapper .styled-table {
-    min-width: 600px;
+    overflow-x: visible; /* Let the table control itself */
 }
 
 /* --- ALT Handbook Page Specific Styles --- */
@@ -163,7 +164,6 @@ footer {
 #backToTopBtn { display: none; position: fixed; bottom: 20px; right: 30px; z-index: 99; background-color: var(--primary-color); color: white; border: none; cursor: pointer; padding: 15px; border-radius: 50%; opacity: 0.8;}
 #backToTopBtn.show { display: block; }
 
-/* FIX: ALT Handbook Responsive Sidebar Toggle Button */
 .sidebar-toggle-btn {
     display: none;
     position: fixed;
@@ -295,6 +295,19 @@ footer {
 
 /* --- Responsive Media Queries --- */
 @media (max-width: 768px) {
+    .step { padding: 1rem; }
+    
+    /* CORRECTED FIX: Make tables responsive by forcing content to wrap */
+    .styled-table {
+        table-layout: fixed; /* Prevents content from stretching columns */
+        width: 100%;       /* Makes table take full container width */
+    }
+    .styled-table th,
+    .styled-table td {
+        word-break: break-word; /* This is the key: forces long text to wrap */
+        padding: 8px; /* Slightly reduce padding on mobile */
+    }
+
     /* ALT Handbook sidebar behavior */
     .sidebar {
         position: fixed;
@@ -322,7 +335,7 @@ footer {
         align-items: flex-start;
     }
     .budget-input-group label {
-        flex-basis: auto; /* Allow label to take its own width */
+        flex-basis: auto;
     }
     
     /* Lesson Architect responsive forms */
