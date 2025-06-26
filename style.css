@@ -73,11 +73,11 @@ header h1 { margin: 0; font-size: 1.5rem; }
 .mobile-nav {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* MODIFIED: Aligns items to the top */
+    justify-content: flex-start;
     background: var(--primary-color);
     height: 100vh;
     text-align: left;
-    padding: 5rem 2rem 2rem 2rem; /* MODIFIED: Added top padding, reduced others slightly */
+    padding: 5rem 2rem 2rem 2rem;
     position: fixed;
     top: 0;
     right: -100%;
@@ -91,7 +91,7 @@ header h1 { margin: 0; font-size: 1.5rem; }
 .mobile-nav.open { right: 0; }
 .mobile-nav a {
     font-size: 1.3rem;
-    padding: 0.6rem 0; /* MODIFIED: Reduced padding to tighten the list */
+    padding: 0.6rem 0;
     font-weight: bold;
     color: white;
     text-decoration: none;
@@ -129,6 +129,13 @@ footer {
 .page-checklist td.checkbox-cell { width: 40px; text-align: center; }
 .page-checklist input[type="checkbox"] { transform: scale(1.2); }
 
+/* NEW: Wrapper for responsive tables */
+.table-responsive-wrapper {
+    overflow-x: auto;
+    width: 100%;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
 /* --- ALT Handbook Page Specific Styles --- */
 .alt-handbook-container { max-width: 100%; padding: 0; margin: 0; flex-grow: 1; }
 .alt-handbook-container .main-content { display: flex; overflow: hidden; height: calc(100vh - 85px); }
@@ -141,7 +148,7 @@ footer {
 .sidebar ul { list-style: none; padding: 0; }
 .sidebar li a { display: block; padding: 10px 12px; border-radius: 4px; color: #5f6368; margin-bottom: 5px; text-decoration: none; }
 .sidebar li a.active, .sidebar li a:hover { background-color: var(--primary-color); color: white; }
-.content { flex-grow: 1; padding: 20px 30px; overflow-y: auto; scroll-behavior: smooth; }
+.content { flex-grow: 1; padding: 20px 30px; overflow-y: auto; scroll-behavior: smooth; position: relative; }
 .searchable-section { padding-bottom: 1em; margin-bottom: 2em; border-bottom: 1px dashed var(--border-color); }
 .accordion-trigger { background-color: #f1f3f4; color: var(--text-color); cursor: pointer; padding: 12px 18px; width: 100%; text-align: left; border: 1px solid var(--border-color); outline: none; font-size: 1rem; transition: background-color 0.3s; }
 .accordion-trigger.active, .accordion-trigger:hover { background-color: #e0e0e0; }
@@ -151,6 +158,23 @@ footer {
 .current-highlight { outline: 2px solid var(--warning-color); outline-offset: 2px; }
 #backToTopBtn { display: none; position: fixed; bottom: 20px; right: 30px; z-index: 99; background-color: var(--primary-color); color: white; border: none; cursor: pointer; padding: 15px; border-radius: 50%; opacity: 0.8;}
 #backToTopBtn.show { display: block; }
+
+/* NEW: ALT Handbook Responsive Sidebar Toggle Button */
+.sidebar-toggle-btn {
+    display: none; /* Hidden on desktop */
+    position: fixed;
+    top: 95px; /* Below the header */
+    left: 10px;
+    z-index: 1003; /* Above sidebar overlay */
+    background-color: var(--primary-color);
+    color: white;
+    border: 1px solid white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
 
 /* --- HSP Calculator Page Styles --- */
 .calculator-container { max-width: 900px; margin: 2rem auto; padding: 25px; background-color: white; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
@@ -178,7 +202,7 @@ footer {
 .emergency-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; text-align: center; margin: 2rem 0; }
 .emergency-item { background-color: #f9f9f9; padding: 1rem; border-radius: 8px; border: 1px solid #eee; }
 .emergency-number { font-size: 2rem; font-weight: bold; color: var(--warning-color); }
-.address-field { background-color: #f4f4f4; border: 1px dashed #ccc; padding: 1rem; min-height: 50px; }
+.address-field { background-color: #f4f4f4; border: 1px dashed #ccc; padding: 1rem; min-height: 50px; word-break: break-all; }
 .glossary-list dt { font-weight: bold; color: var(--primary-color); margin-top: 1rem; }
 .glossary-list dd { margin-left: 0; padding-left: 1rem; border-left: 3px solid var(--border-color); }
 .update-info-box { background-color:#e7f5ff; border:1px solid #b3d7ff; border-left:5px solid #007bff; padding:1.5rem 2rem; margin:3rem 0; border-radius:8px; text-align:center; }
@@ -267,9 +291,46 @@ footer {
 .lesson-architect-container #printPlanButton { background-color: #007bff; }
 .lesson-architect-container #planSummaryOutput { width: 100%; font-family: 'Courier New', Courier, monospace; margin-top: 10px; padding: 10px; border-color: #ccc; min-height: 200px; }
 
+/* --- Responsive Media Queries --- */
 @media (max-width: 768px) {
-    .lesson-architect-container .teacher-info .form-group.teacher-role-group { flex-direction: column; align-items: flex-start; }
-    .lesson-architect-container .teacher-info .form-group.teacher-role-group .role-selector { margin-top: 10px; }
-    .lesson-architect-container .grade-class-group { flex-direction: column; align-items: stretch; }
-    .budget-input-group label { flex-basis: 100%; }
+    /* ALT Handbook sidebar behavior */
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 85px; /* Adjust if header height changes */
+        height: calc(100vh - 85px);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 1002;
+        box-shadow: 3px 0 10px rgba(0,0,0,0.2);
+    }
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    .sidebar-toggle-btn {
+        display: block;
+    }
+    .alt-handbook-container .content {
+        padding-left: 20px;
+    }
+
+    /* Budgeting form stacking */
+    .budget-input-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .budget-input-group label {
+        flex-basis: auto; /* Allow label to take its own width */
+    }
+    
+    /* Lesson Architect responsive forms */
+    .lesson-architect-container .teacher-info .form-group.teacher-role-group,
+    .lesson-architect-container .grade-class-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .lesson-architect-container .teacher-info .form-group.teacher-role-group .role-selector {
+        margin-top: 10px;
+        justify-content: space-around;
+    }
 }
