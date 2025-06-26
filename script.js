@@ -3,7 +3,7 @@
  * Contains logic for:
  * 1. Hamburger Navigation Menu (Global)
  * 2. Info Pop-up Modal (Global - for simple pages)
- * 3. ALT Handbook Page (Scoped: Search, Scroll-spy, Accordions, Back-to-Top)
+ * 3. ALT Handbook Page (Scoped: Search, Scroll-spy, Accordions, Back-to-Top, Sidebar Toggle)
  * 4. HSP Calculator Page (Scoped: Point Calculation, Help Bubbles)
  * 5. Lesson Architect Page (Scoped: Dropdowns, Time Calculation, Interactive Tooltips, Print)
  * 6. Budgeting Page (Scoped: Interactive Calculator)
@@ -61,6 +61,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const handbookContainer = document.querySelector('.alt-handbook-container');
     if (handbookContainer) {
         console.log("ALT Handbook page detected. Initializing scripts.");
+
+        // CORRECTED: Sidebar Toggle Logic
+        const sidebar = document.getElementById('sidebarNav');
+        const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+        const mainContentArea = document.getElementById('mainContent');
+
+        if (sidebar && sidebarToggleBtn && mainContentArea) {
+            sidebarToggleBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent this click from reaching the main content area
+                sidebar.classList.toggle('open');
+                sidebarToggleBtn.textContent = sidebar.classList.contains('open') ? '✕ Close' : '☰ Menu';
+            });
+            
+            // This listener closes the sidebar if a click happens anywhere in the main content
+            mainContentArea.addEventListener('click', (e) => {
+                // We only close it if it's already open AND the click was NOT on the toggle button
+                if (sidebar.classList.contains('open') && e.target.id !== 'sidebarToggleBtn') {
+                    sidebar.classList.remove('open');
+                    sidebarToggleBtn.textContent = '☰ Menu';
+                }
+            });
+
+            // This prevents a click inside the sidebar from closing it (by stopping propagation)
+            sidebar.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
+        
         const navLinksContainer = document.getElementById('navLinks');
         const content = document.getElementById('mainContent');
         const searchInput = document.getElementById('searchInput');
@@ -106,6 +134,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (targetElement) {
                         content.scrollTo({ top: targetElement.offsetTop, behavior: 'smooth' });
                         updateActiveLink(e.target);
+                    }
+                    // Close sidebar after navigation on mobile
+                    if (sidebar && sidebar.classList.contains('open')) {
+                        sidebar.classList.remove('open');
+                        if(sidebarToggleBtn) sidebarToggleBtn.textContent = '☰ Menu';
                     }
                 }
             });
