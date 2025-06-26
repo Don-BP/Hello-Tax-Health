@@ -33,7 +33,7 @@ header {
     flex-shrink: 0;
     position: sticky;
     top: 0;
-    z-index: 1001; /* Above mobile nav overlay */
+    z-index: 1001;
 }
 .header-content {
     max-width: 1400px;
@@ -55,7 +55,7 @@ header h1 { margin: 0; font-size: 1.5rem; }
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 1002; /* Above mobile nav */
+    z-index: 1002;
 }
 .hamburger-btn span {
     width: 2rem;
@@ -129,11 +129,15 @@ footer {
 .page-checklist td.checkbox-cell { width: 40px; text-align: center; }
 .page-checklist input[type="checkbox"] { transform: scale(1.2); }
 
-/* NEW: Wrapper for responsive tables */
+/* FIX: Responsive Table Wrapper */
 .table-responsive-wrapper {
     overflow-x: auto;
     width: 100%;
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+/* FIX: Give tables inside the wrapper a min-width to force scrolling */
+.table-responsive-wrapper .styled-table {
+    min-width: 600px;
 }
 
 /* --- ALT Handbook Page Specific Styles --- */
@@ -148,7 +152,7 @@ footer {
 .sidebar ul { list-style: none; padding: 0; }
 .sidebar li a { display: block; padding: 10px 12px; border-radius: 4px; color: #5f6368; margin-bottom: 5px; text-decoration: none; }
 .sidebar li a.active, .sidebar li a:hover { background-color: var(--primary-color); color: white; }
-.content { flex-grow: 1; padding: 20px 30px; overflow-y: auto; scroll-behavior: smooth; position: relative; }
+.content { flex-grow: 1; padding: 20px 30px; overflow-y: auto; scroll-behavior: smooth; position: relative;}
 .searchable-section { padding-bottom: 1em; margin-bottom: 2em; border-bottom: 1px dashed var(--border-color); }
 .accordion-trigger { background-color: #f1f3f4; color: var(--text-color); cursor: pointer; padding: 12px 18px; width: 100%; text-align: left; border: 1px solid var(--border-color); outline: none; font-size: 1rem; transition: background-color 0.3s; }
 .accordion-trigger.active, .accordion-trigger:hover { background-color: #e0e0e0; }
@@ -159,13 +163,13 @@ footer {
 #backToTopBtn { display: none; position: fixed; bottom: 20px; right: 30px; z-index: 99; background-color: var(--primary-color); color: white; border: none; cursor: pointer; padding: 15px; border-radius: 50%; opacity: 0.8;}
 #backToTopBtn.show { display: block; }
 
-/* NEW: ALT Handbook Responsive Sidebar Toggle Button */
+/* FIX: ALT Handbook Responsive Sidebar Toggle Button */
 .sidebar-toggle-btn {
-    display: none; /* Hidden on desktop */
+    display: none;
     position: fixed;
-    top: 95px; /* Below the header */
+    top: 95px;
     left: 10px;
-    z-index: 1003; /* Above sidebar overlay */
+    z-index: 1003;
     background-color: var(--primary-color);
     color: white;
     border: 1px solid white;
@@ -267,10 +271,8 @@ footer {
 .lesson-architect-container .tooltip-icon.alt-role { color: #28a745; border-color: #28a745; }
 .lesson-architect-container .tooltip-icon.jte-role { color: #fd7e14; border-color: #fd7e14; }
 .lesson-architect-container .tooltip-icon.checklist-tip { font-size: 13px; width: 20px; height: 20px; line-height: 18px; color: #6c757d; border-color: #6c757d; }
-/* Tooltip text is hidden by default */
 .lesson-architect-container .tooltip-text { display: none; font-size: 0.9em; margin-top: 8px; padding: 12px; border-radius: 4px; background-color: #f0f0f0; border: 1px solid #ccc; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 .lesson-architect-container .tooltip-row { display: none; }
-/* .show class makes the tooltip visible */
 .lesson-architect-container .tooltip-text.show { display: block; }
 .lesson-architect-container .tooltip-row.show { display: table-row; }
 .lesson-architect-container .tooltip-text strong { color: #0056b3; }
