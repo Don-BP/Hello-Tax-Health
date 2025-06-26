@@ -83,6 +83,62 @@
                 <li><strong>Eat Like a Local:</strong> Enjoy affordable and delicious meals at standing noodle bars, <em>shokudo</em> (cafeterias), and the food basements (<em>depachika</em>) of department stores.</li>
             </ul>
         </section>
+
+        <section id="budget-calculator" class="step">
+            <div class="budget-calculator-container">
+                <h3>Personal Budget Calculator</h3>
+                <p>Enter your own amounts to see a snapshot of your monthly finances. All fields are optional.</p>
+                <div class="budget-form" id="budgetForm">
+                    <div class="budget-input-group">
+                        <label for="income">My Monthly Income (After Tax):</label>
+                        <input type="number" id="income" class="budget-input" placeholder="e.g., 220000">
+                    </div>
+                    <hr>
+                    <div class="budget-input-group">
+                        <label for="rent">Rent:</label>
+                        <input type="number" id="rent" class="budget-input expense" placeholder="e.g., 70000">
+                    </div>
+                    <div class="budget-input-group">
+                        <label for="utilities">Utilities (Gas, Water, Elec):</label>
+                        <input type="number" id="utilities" class="budget-input expense" placeholder="e.g., 10000">
+                    </div>
+                    <div class="budget-input-group">
+                        <label for="phoneInternet">Phone & Internet:</label>
+                        <input type="number" id="phoneInternet" class="budget-input expense" placeholder="e.g., 8000">
+                    </div>
+                    <div class="budget-input-group">
+                        <label for="groceries">Groceries:</label>
+                        <input type="number" id="groceries" class="budget-input expense" placeholder="e.g., 40000">
+                    </div>
+                    <div class="budget-input-group">
+                        <label for="transportation">Personal Transportation:</label>
+                        <input type="number" id="transportation" class="budget-input expense" placeholder="e.g., 5000">
+                    </div>
+                    <div class="budget-input-group">
+                        <label for="entertainment">Entertainment / Hobbies:</label>
+                        <input type="number" id="entertainment" class="budget-input expense" placeholder="e.g., 20000">
+                    </div>
+                     <div class="budget-input-group">
+                        <label for="savings">Savings:</label>
+                        <input type="number" id="savings" class="budget-input expense" placeholder="e.g., 30000">
+                    </div>
+                    <div class="budget-input-group">
+                        <label for="other">Other Expenses:</label>
+                        <input type="number" id="other" class="budget-input expense" placeholder="e.g., 15000">
+                    </div>
+                </div>
+                <div class="budget-totals">
+                    <div>
+                        <span class="total-label">Total Monthly Expenses:</span>
+                        <span class="total-amount" id="total-expenses">¥0</span>
+                    </div>
+                    <div>
+                        <span class="total-label">Remaining Income:</span>
+                        <span class="total-amount" id="remaining-income">¥0</span>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="no-print">

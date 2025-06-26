@@ -199,6 +199,21 @@ footer {
 .provider-group .checkbox-cell { width: 40px; text-align: center; }
 .provider-group .note { font-size: 0.9em; font-style: italic; margin-top: .5rem; }
 
+/* --- Budgeting Page: Calculator Styles --- */
+.budget-calculator-container { margin-top: 2rem; }
+.budget-calculator-container h3 { color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.5rem; }
+.budget-form { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1rem; }
+.budget-input-group { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.budget-input-group label { flex-basis: 180px; font-weight: bold; }
+.budget-input-group input { flex-grow: 1; padding: 8px; border: 1px solid var(--border-color); border-radius: 4px; }
+.budget-totals { margin-top: 2rem; padding: 1.5rem; background-color: var(--secondary-color); border-radius: 8px; }
+.budget-totals div { display: flex; justify-content: space-between; font-size: 1.2rem; margin-bottom: 0.5rem; }
+.budget-totals .total-label { font-weight: bold; }
+.budget-totals .total-amount { font-weight: bold; }
+#total-expenses { color: var(--warning-color); }
+#remaining-income { color: #28a745; }
+
+
 /* --- LESSON ARCHITECT PAGE STYLES --- */
 .lesson-architect-container { max-width: 900px; margin: 2rem auto; padding: 25px; background-color: #fafafa; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
 .lesson-architect-container h1 { color: #343a40; font-size: 1.8em; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid var(--primary-color); }
@@ -248,11 +263,12 @@ footer {
 .lesson-architect-container .button-group { display: flex; gap: 1rem; margin-top: 25px; }
 .lesson-architect-container .button-group button { flex-grow: 1; padding: 12px 15px; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1em; font-weight: bold; }
 .lesson-architect-container #generatePlanButton { background-color: #4CAF50; }
-.lesson-architect-container #exportPdfButton { background-color: #007bff; }
+.lesson-architect-container #printPlanButton { background-color: #007bff; }
 .lesson-architect-container #planSummaryOutput { width: 100%; font-family: 'Courier New', Courier, monospace; margin-top: 10px; padding: 10px; border-color: #ccc; min-height: 200px; }
 
 @media (max-width: 768px) {
     .lesson-architect-container .teacher-info .form-group.teacher-role-group { flex-direction: column; align-items: flex-start; }
     .lesson-architect-container .teacher-info .form-group.teacher-role-group .role-selector { margin-top: 10px; }
     .lesson-architect-container .grade-class-group { flex-direction: column; align-items: stretch; }
+    .budget-input-group label { flex-basis: 100%; }
 }

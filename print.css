@@ -5,50 +5,83 @@
         font-family: 'Times New Roman', Times, serif;
         color: #000;
         background-color: #fff;
+        font-size: 10pt;
     }
 
     /* Hide non-essential elements */
-    .no-print, .sticky-nav, header, footer, .modal, .info-trigger, .update-info-box .cta-button {
+    .no-print, header, footer, .modal, .info-trigger, .update-info-box .cta-button, .sidebar, .search-container, #backToTopBtn, .tooltip-icon, .hamburger-btn, .mobile-nav, .tooltip-text, .tooltip-row {
         display: none !important;
     }
 
     /* Reset main layout for printing */
-    main {
+    .content-container, .alt-handbook-container .main-content, .calculator-container, .lesson-architect-container, .content {
         max-width: 100%;
         margin: 0;
         padding: 0;
+        box-shadow: none;
+        border: none;
+        height: auto !important;
+        overflow: visible !important;
     }
 
-    section.step {
+    .step, .phase-section {
         box-shadow: none;
         border: 1px solid #ccc;
         border-left-width: 5px;
-        padding: 1.5rem;
+        padding: 1rem;
         page-break-inside: avoid; /* Try to keep sections from splitting across pages */
         margin-bottom: 1rem;
     }
 
-    a {
-        text-decoration: none;
-        color: #000;
-    }
+    a { text-decoration: none; color: #000; }
+    a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8rem; }
 
-    /* Show the URL for links */
-    a[href^="http"]:after {
-        content: " (" attr(href) ")";
-        font-size: 0.8rem;
-    }
-
-    .styled-table, .styled-table th, .styled-table td {
-        border: 1px solid #666;
+    .styled-table, .styled-table th, .styled-table td,
+    .page-checklist table, .page-checklist td,
+    .visa-checklist-container table, .visa-checklist-container td,
+    .lesson-architect-container .architect-checklist table, .lesson-architect-container .architect-checklist td,
+    .budget-calculator-container table, .budget-calculator-container td {
+        border: 1px solid #666 !important;
+        page-break-inside: avoid;
     }
     
-    .checklist label {
-        color: #000;
+    .page-checklist input[type="checkbox"] {
+        display: inline-block;
+        border: 1px solid #000;
+        width: 12px;
+        height: 12px;
+        appearance: none; /* remove default appearance */
+    }
+     .page-checklist input[type="checkbox"]:checked::before {
+        content: 'X';
+        display: block;
+        text-align: center;
+        line-height: 12px;
+        font-weight: bold;
     }
 
-    .checklist input[type="checkbox"] {
-        display: inline-block; /* Make sure checkbox appears */
-        border: 1px solid #000;
+    /* Lesson Architect Specific Print Styles */
+    .lesson-architect-container h1, .lesson-architect-container h2 {
+        color: #000;
+        border-bottom: 2px solid #000;
+    }
+    .lesson-architect-container .lesson-stage {
+        border: 1px solid #999;
+        margin-top: 1rem;
+        page-break-inside: avoid;
+    }
+    /* Make form inputs and textareas visible with their content */
+    .lesson-architect-container textarea, .lesson-architect-container input[type="text"], .lesson-architect-container input[type="date"] {
+        display: block;
+        border: 1px dotted #ccc;
+        padding: 5px;
+        width: 100%;
+        background-color: #f9f9f9;
+        -webkit-print-color-adjust: exact; /* Ensures background color prints */
+        color-adjust: exact;
+    }
+    .lesson-architect-container input, .lesson-architect-container select {
+        border: none;
+        font-weight: bold;
     }
 }

@@ -5,7 +5,8 @@
  * 2. Info Pop-up Modal (Global - for simple pages)
  * 3. ALT Handbook Page (Scoped: Search, Scroll-spy, Accordions, Back-to-Top)
  * 4. HSP Calculator Page (Scoped: Point Calculation, Help Bubbles)
- * 5. Lesson Architect Page (Scoped: Dropdowns, Time Calculation, Interactive Tooltips, Text Summary)
+ * 5. Lesson Architect Page (Scoped: Dropdowns, Time Calculation, Interactive Tooltips, Print)
+ * 6. Budgeting Page (Scoped: Interactive Calculator)
  */
 
 // --- Debounce Function (Helper Utility) ---
@@ -156,13 +157,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!originalSectionHTML.has(section.id)) {
                     originalSectionHTML.set(section.id, section.innerHTML);
                 }
-                // Use a temporary div to avoid messing with event listeners on the original section
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = section.innerHTML;
                 
                 let found = false;
-                tempDiv.querySelectorAll('p, li, h2, h3, h4, .accordion-trigger, .accordion-panel').forEach(el => {
-                    // Check only text nodes to avoid replacing inside attributes
+                tempDiv.querySelectorAll('p, li, h2, h3, h4, .accordion-trigger, .accordion-panel, td').forEach(el => {
                     Array.from(el.childNodes).forEach(child => {
                         if (child.nodeType === 3 && regex.test(child.nodeValue)) {
                             found = true;
@@ -291,7 +290,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const gradeSelect = document.getElementById('planGrade');
             const grades = ["ES 1st", "ES 2nd", "ES 3rd", "ES 4th", "ES 5th", "ES 6th", "JHS 1st", "JHS 2nd", "JHS 3rd"];
             if (gradeSelect) {
-                // Clear existing options first to prevent duplicates on potential re-runs
                 gradeSelect.innerHTML = '';
                 grades.forEach(grade => gradeSelect.add(new Option(grade, grade)));
             }
@@ -327,21 +325,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     const tooltipTextElement = document.getElementById(targetId);
                     if (tooltipTextElement) {
                         const isChecklistTip = target.classList.contains('checklist-tip');
-                        // For checklists, the element to show is the entire table row
                         const targetElementToShow = isChecklistTip ? tooltipTextElement.closest('tr.tooltip-row') : tooltipTextElement;
                         
                         if (!targetElementToShow) return;
                         
                         const isShowing = targetElementToShow.classList.contains('show');
 
-                        // Hide all other open tooltips first
                         architectContainer.querySelectorAll('.tooltip-text.show, .tooltip-row.show').forEach(el => {
-                            if (el !== targetElementToShow) { // Don't hide the one we're about to show
+                            if (el !== targetElementToShow) {
                                 el.classList.remove('show');
                             }
                         });
-
-                        // Toggle the visibility of the current tooltip
                         targetElementToShow.classList.toggle('show');
                     }
                 }
@@ -393,19 +387,54 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        const exportPlanAsPdf = () => {
-            alert("PDF Export Feature Not Available.\n\nThis function requires a server-side component to generate the PDF file. Please use the 'Generate Plan Summary (Text)' button to copy and paste the plan into a document for printing or saving as a PDF.");
+        const printPlan = () => {
+            window.print();
         };
 
         architectContainer.querySelectorAll('.time-input').forEach(input => input.addEventListener('input', updateTotalTime));
         const genButton = document.getElementById('generatePlanButton');
         if (genButton) genButton.addEventListener('click', generatePlanSummaryText);
-        const pdfButton = document.getElementById('exportPdfButton');
-        if (pdfButton) pdfButton.addEventListener('click', exportPlanAsPdf);
+        const printButton = document.getElementById('printPlanButton');
+        if (printButton) printButton.addEventListener('click', printPlan);
         
         populateDropdowns();
         updateTotalTime();
         setupTooltips();
         setupRoleSelectors();
+    }
+
+    // --- 6. Budgeting Page (Scoped Logic) ---
+    const budgetForm = document.getElementById('budgetForm');
+    if (budgetForm) {
+        console.log("Budget Calculator page detected. Initializing scripts.");
+
+        const calculateBudget = () => {
+            const incomeInput = document.getElementById('income');
+            const expenseInputs = document.querySelectorAll('.expense');
+            const totalExpensesEl = document.getElementById('total-expenses');
+            const remainingIncomeEl = document.getElementById('remaining-income');
+
+            let totalExpenses = 0;
+            expenseInputs.forEach(input => {
+                totalExpenses += parseFloat(input.value) || 0;
+            });
+
+            const income = parseFloat(incomeInput.value) || 0;
+            const remaining = income - totalExpenses;
+
+            const yenFormatter = new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY', minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
+            totalExpensesEl.textContent = yenFormatter.format(totalExpenses);
+            remainingIncomeEl.textContent = yenFormatter.format(remaining);
+
+            if (remaining < 0) {
+                remainingIncomeEl.style.color = 'var(--warning-color)';
+            } else {
+                remainingIncomeEl.style.color = '#28a745';
+            }
+        };
+
+        budgetForm.addEventListener('input', calculateBudget);
+        calculateBudget(); // Initial calculation on page load
     }
 });

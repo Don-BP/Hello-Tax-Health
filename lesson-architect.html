@@ -225,13 +225,12 @@
             </div>
         </div>
 
-        <div class="button-group">
+        <div class="button-group no-print">
             <button id="generatePlanButton" type="button">Generate Plan Summary (Text)</button>
-            <button id="exportPdfButton" type="button">Export Plan as PDF</button>
+            <button id="printPlanButton" type="button">Print / Save as PDF</button>
         </div>
-        <div id="loadingMessage" style="display:none;">Generating PDF...</div>
 
-        <div id="plan-summary-section" style="display:none;" class="phase-section">
+        <div id="plan-summary-section" style="display:none;" class="phase-section no-print">
             <h2>Generated Lesson Plan Summary</h2>
             <textarea id="planSummaryOutput" rows="20" readonly></textarea>
         </div>
